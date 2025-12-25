@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAREEKH – Law Firm Assistant</title>
+
+<style>
+/* ===== RESET ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+html{ scroll-behavior:smooth; }
+body{ background:#f4f6f9; }
+
+/* ===== HEADER ===== */
+header{
+    background:#000;
+    padding:15px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+.logo{
+    color:#fff;
+    font-size:22px;
+    font-weight:bold;
+}
+nav a{
+    color:#fff;
+    margin:0 14px;
+    text-decoration:none;
+    font-size:15px;
+}
+nav a:hover{ color:#b08a57; }
+/* ===== HERO (HALF IMAGE STYLE - FIXED) ===== */
+.hero{
+    height:55vh;              /* 🔽 height kam */
+    background:#000;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-image{
+    position:absolute;
+    left:0;                   /* 🔧 left:-10% hata diya */
+    top:0;
+    width:100%;
+    height:100%;
+    background:url("https://images.unsplash.com/photo-1521791136064-7986c2920216")
+              no-repeat center/cover;
+    border-radius:0 40% 40% 0; /* ✔ same curve, refined */
+    opacity:0.35;
+}
+
+.hero-content{
+    position:relative;
+    max-width:600px;
+    margin-left:55%;          /* ✔ content right side */
+    color:#fff;
+}
+
+.hero-content h1{
+    font-size:52px;           /* thoda compact */
+    font-weight:800;
+    color:#b08a57;
+}
+
+.hero-content p{
+    margin:16px 0;
+    font-size:17px;
+    line-height:1.6;
+}
+
+.buttons{
+    margin-top:22px;
+}
+
+.btn{
+    padding:13px 24px;
+    background:#e63946;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    font-size:15px;
+    cursor:pointer;
+    margin-right:12px;
+}
+.btn:hover{
+    opacity:0.9;
+}
+
+/* ===== MOBILE FIX ===== */
+@media(max-width:768px){
+    .hero{
+        height:45vh;
+    }
+    .hero-content{
+        margin-left:10%;
+    }
+}
+
+.hero-image::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:6px;
+    background:linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.9),
+        rgba(255,255,255,0)
+    );
+}
+
+
+/* ===== ABOUT SECTION UI (FULL WIDTH FIX) ===== */
+.section{
+    padding:80px 20px;        /* 🔧 left-right thoda space */
+    background:#f6f8fa;
+}
+
+/* Title */
+.about-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.about-title h2{
+    font-size:28px;
+    color:#0d2c54;
+    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+}
+
+.about-title .icon{
+    font-size:26px;
+}
+
+.about-title .underline{
+    width:40px;
+    height:3px;
+    background:#e63946;
+    margin:10px auto 0;
+    border-radius:2px;
+}
+
+/* ===== About Content Box ===== */
+.about-box{
+    width:100%;               /* ✅ full width */
+    max-width:1400px;         /* ✅ big screens pe control */
+    margin:0 auto;            /* center */
+    background:#fff;
+    padding:35px 45px;
+    border-radius:10px;
+    border-left:5px solid #8ecae6;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Text */
+.about-box p{
+    font-size:15px;
+    color:#333;
+    line-height:1.7;
+}
+
+/* ===== Mobile Fix ===== */
+@media(max-width:768px){
+    .section{
+        padding:60px 15px;
+    }
+    .about-box{
+        padding:25px 20px;
+    }
+}
+
+/* ===== KEY FEATURES SECTION ===== */
+.features-section{
+    background:#f6f8fa;
+    padding:90px 40px;
+}
+
+.features-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.features-title h2{
+    font-size:30px;
+    font-weight:700;
+    color:#0d2c54;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+}
+
+.features-title .underline{
+    width:45px;
+    height:3px;
+    background:#e63946;
+    margin:10px auto 0;
+    border-radius:2px;
+}
+
+/* ===== FEATURE CARDS ===== */
+.features-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:25px;
+    max-width:1300px;
+    margin:auto;
+}
+
+.feature-card{
+    background:#fff;
+    padding:30px 25px;
+    border-radius:12px;
+    box-shadow:0 8px 22px rgba(0,0,0,0.08);
+    border-left:5px solid #9ad9e5;
+}
+
+.feature-card h3{
+    font-size:18px;
+    margin-bottom:12px;
+    color:#0d2c54;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.feature-card p{
+    font-size:14.5px;
+    color:#444;
+    line-height:1.6;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .features-section{
+        padding:70px 20px;
+    }
+}
+
+
+/* ===== CONTACT ===== */
+.contact-box{
+    max-width:450px;
+    margin:auto;
+    background:#fff;
+    padding:30px;
+    border-radius:14px;
+    text-align:center;
+}
+
+/* ===== CASE ENTRY & MANAGEMENT ===== */
+.case-section{
+    background:#f6f8fa;
+    padding:90px 40px;
+}
+
+.case-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.case-title h2{
+    font-size:30px;
+    font-weight:700;
+    color:#0d2c54;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+}
+
+.case-title .underline{
+    width:45px;
+    height:3px;
+    background:#e63946;
+    margin:10px auto 0;
+    border-radius:2px;
+}
+
+/* White Content Box */
+.case-box{
+    max-width:1200px;
+    margin:auto;
+    background:#fff;
+    padding:40px 45px;
+    border-radius:12px;
+    box-shadow:0 8px 22px rgba(0,0,0,0.08);
+}
+
+/* Text */
+.case-box p{
+    font-size:15.5px;
+    color:#333;
+    line-height:1.7;
+}
+
+/* List */
+.case-list{
+    list-style:none;
+    padding-left:0;
+    margin:25px 0;
+}
+.case-list li{
+    font-size:15px;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.case-list li::before{
+    content:"✔";
+    color:#e63946;
+    font-weight:bold;
+}
+
+/* Sub Heading */
+.sub-title{
+    margin-top:40px;
+    font-size:22px;
+    font-weight:700;
+    color:#0d2c54;
+}
+
+/* ===== FINANCIAL TRACKING ===== */
+.financial-section{
+    background:#f6f8fa;
+    padding:90px 40px;
+}
+
+.financial-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.financial-title h2{
+    font-size:30px;
+    font-weight:700;
+    color:#0d2c54;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+}
+
+.financial-title .underline{
+    width:45px;
+    height:3px;
+    background:#e63946;
+    margin:10px auto 0;
+    border-radius:2px;
+}
+
+/* Cards layout */
+.financial-grid{
+    max-width:1300px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+/* Card */
+.financial-card{
+    background:#fff;
+    padding:35px 40px;
+    border-radius:14px;
+    box-shadow:0 8px 22px rgba(0,0,0,0.08);
+}
+
+.financial-card.border{
+    border-left:5px solid #9ad9e5;
+}
+
+.financial-card h3{
+    font-size:20px;
+    margin-bottom:15px;
+    color:#0d2c54;
+}
+
+.financial-card p{
+    font-size:15.5px;
+    color:#333;
+    line-height:1.7;
+}
+
+/* Responsive */
+@media(max-width:900px){
+    .financial-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* ===== CONTACT & SUPPORT ===== */
+.contact-section{
+    background:#f6f8fa;
+    padding:90px 40px;
+}
+
+.contact-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.contact-title h2{
+    font-size:30px;
+    font-weight:700;
+    color:#0d2c54;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+}
+
+.contact-title .underline{
+    width:45px;
+    height:3px;
+    background:#e63946;
+    margin:10px auto 0;
+    border-radius:2px;
+}
+
+/* Contact Box */
+.contact-box{
+    max-width:1200px;
+    margin:auto;
+    background:#fff;
+    padding:40px 45px;
+    border-radius:14px;
+    box-shadow:0 8px 22px rgba(0,0,0,0.08);
+}
+
+.contact-box p{
+    font-size:15.5px;
+    color:#333;
+    line-height:1.7;
+}
+
+.contact-list{
+    list-style:none;
+    padding-left:0;
+    margin:25px 0;
+}
+.contact-list li{
+    font-size:15.5px;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+/* ===== PAY SECTION ===== */
+.pay-section{
+    background:#f6f8fa;
+    padding:90px 40px;
+}
+
+.pay-box{
+    max-width:600px;
+    margin:auto;
+    background:#fff;
+    padding:40px;
+    border-radius:14px;
+    box-shadow:0 8px 22px rgba(0,0,0,0.08);
+    text-align:center;
+}
+
+.pay-box p{
+    font-size:15.5px;
+    margin-bottom:25px;
+    color:#333;
+}
+
+.pay-btn{
+    padding:14px 30px;
+    font-size:16px;
+    background:#e63946;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+.pay-btn:hover{
+    opacity:0.9;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <div class="logo">⚖️ TAREEKH</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#cases">Case Management</a>
+        <a href="#financials">Financials</a>
+        <a href="#contact">Contact</a>
+        <a href="#pay">Pay</a>
+    </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+    <div class="hero-image"></div>
+
+    <div class="hero-content">
+        <h1>LAW FIRM</h1>
+        <p>
+            Smart Case Tracking, Calendar, and Finance Management
+            for Legal Professionals
+        </p>
+        <div class="buttons">
+            <button class="btn"
+                onclick="window.open('https://play.google.com/store/apps/details?id=com.tareekh','_blank')">
+                Download for Android
+            </button>
+            <button class="btn">Download for iOS</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="section" id="about">
+
+    <div class="about-title">
+        <h2>
+            <span class="icon">🏛️</span>
+            About TAREEKH
+        </h2>
+        <div class="underline"></div>
+    </div>
+
+    <div class="about-box">
+        <p>
+            TAREEKH is an all-in-one digital assistant for lawyers, advocates,
+            and legal professionals. It simplifies your daily workflow by
+            combining case tracking, calendar management, and financial
+            tracking into one secure application.
+        </p>
+        <br>
+        <p>
+            Designed for modern advocates, the system reduces paperwork,
+            keeps your hearings organized, and ensures you never miss an
+            important court date again.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- ===== KEY FEATURES ===== -->
+<section class="features-section" id="features">
+
+    <div class="features-title">
+        <h2>
+            <span>⚙️</span>
+            Key Features
+        </h2>
+        <div class="underline"></div>
+    </div>
+
+    <div class="features-grid">
+
+        <div class="feature-card">
+            <h3>🔐 Secure Authentication</h3>
+            <p>
+                Log in using phone, COP number, and password with
+                end-to-end encryption and session security.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>📁 Complete Case Records</h3>
+            <p>
+                Store every case detail including party names,
+                court name, and upload PDF case files easily.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>📅 Smart Hearing Calendar</h3>
+            <p>
+                Automatic “Today’s Hearing” list with advance
+                reminders for your next hearing date.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>💼 Financial Overview</h3>
+            <p>
+                Keep track of your fees, partial payments,
+                and due balances across all cases.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>💳 Subscription Plans</h3>
+            <p>
+                Flexible pricing tiers for solo advocates,
+                firms, and enterprise users — managed by admin panel.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ===== CASE ENTRY & MANAGEMENT ===== -->
+<section class="case-section" id="cases">
+
+    <div class="case-title">
+        <h2>
+            📝 Case Entry & Management
+        </h2>
+        <div class="underline"></div>
+    </div>
+
+    <div class="case-box">
+
+        <p>
+            Advocates can manually enter complete case details including:
+        </p>
+
+        <ul class="case-list">
+            <li>Case Number</li>
+            <li>Police Station & Crime Number</li>
+            <li>Court Name</li>
+            <li>Case Name (e.g. <i>State vs. X</i>)</li>
+            <li>Case Type</li>
+        </ul>
+
+        <p>
+            All data is stored securely and searchable by Case Name,
+            Case Number, or Party Name. PDF documents can be uploaded
+            for each case record.
+        </p>
+
+        <h3 class="sub-title">Calendar & Date Management</h3>
+
+        <p>
+            The app automatically highlights Today's Hearing List.
+            Users can enter Next Hearing Dates with reminder
+            functionality (one day before).
+        </p>
+
+        <p>
+            Smart case views categorize cases as:
+            Upcoming Dates, Ongoing, Closed, and by Genre.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ===== FINANCIAL TRACKING & SUBSCRIPTIONS ===== -->
+<section class="financial-section" id="financials">
+
+    <div class="financial-title">
+        <h2>
+            💰 Financial Tracking & Subscriptions
+        </h2>
+        <div class="underline"></div>
+    </div>
+
+    <div class="financial-grid">
+
+        <!-- Left Card -->
+        <div class="financial-card">
+            <h3>Detailed Fee Tracking</h3>
+            <p>
+                Track fees received per case with optional status tags
+                for partial or full payments. Maintain a clear financial
+                summary of all your case-related income.
+            </p>
+        </div>
+
+        <!-- Right Card -->
+        <div class="financial-card border">
+            <h3>Flexible Subscription Model</h3>
+            <p>
+                This is a paid application offering flexible subscription
+                tiers for different user needs (solo advocates, firms,
+                enterprise). The Admin Panel allows management of users
+                and subscription plans efficiently.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== CONTACT & SUPPORT ===== -->
+<section class="contact-section" id="contact">
+
+    <div class="contact-title">
+        <h2>📩 Contact & Support</h2>
+        <div class="underline"></div>
+    </div>
+
+    <div class="contact-box">
+        <p>
+            Need help or want to know more? Reach us through the following channels:
+        </p>
+
+        <ul class="contact-list">
+            <li>📧 <b>Email:</b> support@thetareekh.com</li>
+            <li>📞 <b>Phone:</b> +91-9999999999</li>
+            <li>🌐 <b>Website:</b> www.thetareekh.com</li>
+            <li>📍 <b>Address:</b> Aligarh UP, India</li>
+        </ul>
+
+        <p>
+            Our team is available Monday–Saturday, 9 AM to 7 PM (IST).
+        </p>
+    </div>
+
+</section>
+
+
+<!-- ===== PAY ===== -->
+<section class="section" id="pay">
+    <h2>Make a Payment</h2>
+    <div style="text-align:center;">
+        <button class="btn">Pay Now</button>
+    </div>
+</section>
+
+</body>
+</html>
